@@ -3,6 +3,14 @@ import { useEffect } from 'react';
 import { useAuthStore } from './context/authStore';
 import { useSuperAdminStore } from './context/superAdminStore';
 
+// Landing Pages
+import LandingPage from './pages/landing/LandingPage';
+import FeaturesPage from './pages/landing/FeaturesPage';
+import DocsPage from './pages/landing/DocsPage';
+import SupportPage from './pages/landing/SupportPage';
+import ContactPage from './pages/landing/ContactPage';
+import PrivacyPage from './pages/landing/PrivacyPage';
+
 // Layouts
 import DashboardLayout from './components/layout/DashboardLayout';
 import SuperAdminLayout from './components/layout/SuperAdminLayout';
@@ -58,13 +66,13 @@ import InventoryPage from './pages/inventory/InventoryPage';
 const ProtectedRoute = ({ children, roles }) => {
   const { isAuthenticated, user } = useAuthStore();
   if (!isAuthenticated) return <Navigate to="/login" replace />;
-  if (roles && !roles.includes(user?.role)) return <Navigate to="/dashboard" replace />;
+  if (roles && !roles.includes(user?.role)) return <Navigate to="/app/dashboard" replace />;
   return children;
 };
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : children;
+  return isAuthenticated ? <Navigate to="/app/dashboard" replace /> : children;
 };
 
 const SuperAdminProtectedRoute = ({ children }) => {
@@ -99,13 +107,22 @@ export default function App() {
           <Route path="plans"     element={<PlanTemplatesPage />} />
         </Route>
 
-        {/* ── Gym App ──────────────────────────────────────────────────── */}
+        {/* ── Public Landing Pages ─────────────────────────────────────── */}
+        <Route path="/"          element={<LandingPage />} />
+        <Route path="/features"  element={<FeaturesPage />} />
+        <Route path="/docs"      element={<DocsPage />} />
+        <Route path="/support"   element={<SupportPage />} />
+        <Route path="/contact"   element={<ContactPage />} />
+        <Route path="/privacy"   element={<PrivacyPage />} />
+
+        {/* ── Gym App Auth ─────────────────────────────────────────────── */}
         <Route path="/login"           element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/register"        element={<PublicRoute><RegisterPage /></PublicRoute>} />
         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
 
-        <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-          <Route index element={<Navigate to="/dashboard" replace />} />
+        {/* ── Gym App Dashboard ────────────────────────────────────────── */}
+        <Route path="/app" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+          <Route index element={<Navigate to="/app/dashboard" replace />} />
           <Route path="dashboard"    element={<DashboardPage />} />
           <Route path="members"      element={<MembersPage />} />
           <Route path="members/add"  element={<AddMemberPage />} />
@@ -122,7 +139,9 @@ export default function App() {
           <Route path="settings"     element={<SettingsPage />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        {/* Legacy dashboard redirect */}
+        <Route path="/dashboard"  element={<Navigate to="/app/dashboard" replace />} />
+        <Route path="*"           element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
