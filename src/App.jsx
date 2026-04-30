@@ -42,7 +42,7 @@ import AttendancePage from './pages/attendance/AttendancePage';
 import LeadsPage from './pages/leads/LeadsPage';
 
 // Staff
-import StaffPage from './pages/staff/StaffPage';
+import StaffPage from './staff/StaffPage';
 
 // Plans
 import PlansPage from './pages/plans/PlansPage';
@@ -63,15 +63,24 @@ import BranchesPage from './pages/branches/BranchesPage';
 // Inventory
 import InventoryPage from './pages/inventory/InventoryPage';
 
+// --- Route Guards ---
+
 const ProtectedRoute = ({ children, roles }) => {
   const { isAuthenticated, user } = useAuthStore();
+  
   if (!isAuthenticated) return <Navigate to="/login" replace />;
-  if (roles && !roles.includes(user?.role)) return <Navigate to="/app/dashboard" replace />;
+  
+  // If user doesn't have the required role, send them to their main dashboard
+  if (roles && !roles.includes(user?.role)) {
+    return <Navigate to="/app/dashboard" replace />;
+  }
+  
   return children;
 };
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
+  // If logged in, prevent access to Login/Register and send to Dashboard
   return isAuthenticated ? <Navigate to="/app/dashboard" replace /> : children;
 };
 
@@ -92,15 +101,16 @@ export default function App() {
     if (token && isAuthenticated) {
       fetchMe();
     }
-  }, []);
+  }, [token, isAuthenticated, fetchMe]);
 
   return (
     <BrowserRouter>
       <Routes>
         {/* ── Super Admin ──────────────────────────────────────────────── */}
         <Route path="/super-admin/login" element={<SuperAdminPublicRoute><SuperAdminLoginPage /></SuperAdminPublicRoute>} />
+        
         <Route path="/super-admin" element={<SuperAdminProtectedRoute><SuperAdminLayout /></SuperAdminProtectedRoute>}>
-          <Route index element={<Navigate to="/super-admin/dashboard" replace />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<SuperAdminDashboard />} />
           <Route path="gyms"      element={<GymsListPage />} />
           <Route path="gyms/:id"  element={<GymDetailPage />} />
@@ -108,22 +118,23 @@ export default function App() {
         </Route>
 
         {/* ── Public Landing Pages ─────────────────────────────────────── */}
-        <Route path="/"          element={<LandingPage />} />
-        <Route path="/features"  element={<FeaturesPage />} />
-        <Route path="/docs"      element={<DocsPage />} />
-        <Route path="/support"   element={<SupportPage />} />
-        <Route path="/contact"   element={<ContactPage />} />
-        <Route path="/privacy"   element={<PrivacyPage />} />
+        {/* These do NOT use PublicRoute because we want them accessible even if logged in */}
+        <Route path="/"           element={<LandingPage />} />
+        <Route path="/features"   element={<FeaturesPage />} />
+        <Route path="/docs"       element={<DocsPage />} />
+        <Route path="/support"    element={<SupportPage />} />
+        <Route path="/contact"    element={<ContactPage />} />
+        <Route path="/privacy"    element={<PrivacyPage />} />
 
         {/* ── Gym App Auth ─────────────────────────────────────────────── */}
         <Route path="/login"           element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/register"        element={<PublicRoute><RegisterPage /></PublicRoute>} />
         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
 
-        {/* ── Gym App Dashboard ────────────────────────────────────────── */}
+        {/* ── Gym App Dashboard (Standardized to /app) ─────────────────── */}
         <Route path="/app" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-          <Route index element={<Navigate to="/app/dashboard" replace />} />
-          <Route path="app/dashboard"    element={<DashboardPage />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard"    element={<DashboardPage />} />
           <Route path="members"      element={<MembersPage />} />
           <Route path="members/add"  element={<AddMemberPage />} />
           <Route path="members/:id"  element={<MemberDetailPage />} />
@@ -139,9 +150,12 @@ export default function App() {
           <Route path="settings"     element={<SettingsPage />} />
         </Route>
 
-        {/* Legacy dashboard redirect */}
-        <Route path="/dashboard"  element={<Navigate to="/app/dashboard" replace />} />
-        <Route path="*"           element={<Navigate to="/" replace />} />
+        {/* ── Redirects & Fallbacks ────────────────────────────────────── */}
+        {/* Redirect old /dashboard links to the new /app/dashboard */}
+        <Route path="/dashboard/*" element={<Navigate to="/app/dashboard" replace />} />
+        
+        {/* Global Catch-all: Send unknown routes back to Landing Page */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
