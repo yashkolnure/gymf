@@ -155,7 +155,8 @@ export default function App() {
         <Route path="/dashboard/*" element={<Navigate to="/app/dashboard" replace />} />
         
         {/* Global Catch-all: Send unknown routes back to Landing Page */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/app" replace />} />
+        <Route path="/app" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
