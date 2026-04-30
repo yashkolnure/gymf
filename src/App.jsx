@@ -140,7 +140,6 @@ export default function App() {
         </Route>
 
         {/* Legacy dashboard redirect */}
-        <Route path="/dashboard"  element={<Navigate to="/app/dashboard" replace />} />
         <Route path="*"           element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
