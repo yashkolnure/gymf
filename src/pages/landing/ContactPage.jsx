@@ -229,8 +229,8 @@ export default function SupportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { icon: BookOpen, label: 'Read the Docs', desc: 'Step-by-step feature guides', href: '/docs', color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
-              { icon: MessageCircle, label: 'WhatsApp Support', desc: '+91 98765 43210', href: 'https://wa.me/919876543210', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-              { icon: Mail, label: 'Email Support', desc: 'support@gymproindia.in', href: '/contact', color: 'text-primary bg-primary/10 border-primary/20' },
+              { icon: MessageCircle, label: 'WhatsApp Support', desc: '+91 98765 43210', href: 'https://wa.me/918767640530', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+              { icon: Mail, label: 'Email Support', desc: 'admin@avenirya.com', href: '/contact', color: 'text-primary bg-primary/10 border-primary/20' },
             ].map(({ icon: Icon, label, desc, href, color }) => (
               <Reveal key={label}>
                 <Link
@@ -324,7 +324,7 @@ export default function SupportPage() {
           <p className="text-gray-400 mb-8">Our support team typically responds within 2 hours on WhatsApp and 24 hours via email.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918767640530"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-3.5 rounded-xl transition-all active:scale-95 w-full sm:w-auto justify-center"
