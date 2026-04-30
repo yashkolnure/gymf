@@ -121,7 +121,7 @@ export default function App() {
         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
 
         {/* ── Gym App Dashboard ────────────────────────────────────────── */}
-        <Route path="/app" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+        <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard"    element={<DashboardPage />} />
           <Route path="members"      element={<MembersPage />} />
