@@ -42,7 +42,7 @@ import AttendancePage from './pages/attendance/AttendancePage';
 import LeadsPage from './pages/leads/LeadsPage';
 
 // Staff
-import StaffPage from './staff/StaffPage';
+import StaffPage from './pages/staff/StaffPage';
 
 // Plans
 import PlansPage from './pages/plans/PlansPage';
