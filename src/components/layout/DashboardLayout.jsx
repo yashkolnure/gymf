@@ -11,18 +11,18 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-  { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-blue-400' },
-  { path: '/members', icon: Users, label: 'Members', color: 'text-emerald-400' },
-  { path: '/attendance', icon: ClipboardCheck, label: 'Attendance', color: 'text-violet-400' },
-  { path: '/leads', icon: TrendingUp, label: 'Leads & CRM', color: 'text-amber-400' },
-  { path: '/staff', icon: UserCog, label: 'Staff', color: 'text-pink-400' },
-  { path: '/plans', icon: Dumbbell, label: 'Plans', color: 'text-cyan-400' },
-  { path: '/payments', icon: CreditCard, label: 'Payments', color: 'text-green-400' },
-  { path: '/branches', icon: Building2, label: 'Branches', color: 'text-orange-400' },
-  { path: '/inventory', icon: Package, label: 'Inventory', color: 'text-red-400' },
-  { path: '/reports', icon: BarChart3, label: 'Reports', color: 'text-indigo-400' },
-  { path: '/audit-logs', icon: Shield, label: 'Audit Logs', color: 'text-rose-400', roles: ['gym_owner'] },
-  { path: '/settings', icon: Settings, label: 'Settings', color: 'text-gray-400' },
+  { path: '/app/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-blue-400' },
+  { path: '/app/members', icon: Users, label: 'Members', color: 'text-emerald-400' },
+  { path: '/app/attendance', icon: ClipboardCheck, label: 'Attendance', color: 'text-violet-400' },
+  { path: '/app/leads', icon: TrendingUp, label: 'Leads & CRM', color: 'text-amber-400' },
+  { path: '/app/staff', icon: UserCog, label: 'Staff', color: 'text-pink-400' },
+  { path: '/app/plans', icon: Dumbbell, label: 'Plans', color: 'text-cyan-400' },
+  { path: '/app/payments', icon: CreditCard, label: 'Payments', color: 'text-green-400' },
+  { path: '/app/branches', icon: Building2, label: 'Branches', color: 'text-orange-400' },
+  { path: '/app/inventory', icon: Package, label: 'Inventory', color: 'text-red-400' },
+  { path: '/app/reports', icon: BarChart3, label: 'Reports', color: 'text-indigo-400' },
+  { path: '/app/audit-logs', icon: Shield, label: 'Audit Logs', color: 'text-rose-400', roles: ['gym_owner'] },
+  { path: '/app/settings', icon: Settings, label: 'Settings', color: 'text-gray-400' },
 ];
 
 const getRoleColor = (role) => {
