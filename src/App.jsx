@@ -124,19 +124,19 @@ export default function App() {
         <Route path="/app" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/app/dashboard" replace />} />
           <Route path="app/dashboard"    element={<DashboardPage />} />
-          <Route path="app/members"      element={<MembersPage />} />
-          <Route path="app/members/add"  element={<AddMemberPage />} />
-          <Route path="app/members/:id"  element={<MemberDetailPage />} />
-          <Route path="app/attendance"   element={<AttendancePage />} />
-          <Route path="app/leads"        element={<LeadsPage />} />
-          <Route path="app/staff"        element={<StaffPage />} />
-          <Route path="app/plans"        element={<PlansPage />} />
-          <Route path="app/payments"     element={<PaymentsPage />} />
-          <Route path="app/reports"      element={<ReportsPage />} />
-          <Route path="app/audit-logs"   element={<AuditLogPage />} />
-          <Route path="app/branches"     element={<BranchesPage />} />
-          <Route path="app/inventory"    element={<InventoryPage />} />
-          <Route path="app/settings"     element={<SettingsPage />} />
+          <Route path="members"      element={<MembersPage />} />
+          <Route path="members/add"  element={<AddMemberPage />} />
+          <Route path="members/:id"  element={<MemberDetailPage />} />
+          <Route path="attendance"   element={<AttendancePage />} />
+          <Route path="leads"        element={<LeadsPage />} />
+          <Route path="staff"        element={<StaffPage />} />
+          <Route path="plans"        element={<PlansPage />} />
+          <Route path="payments"     element={<PaymentsPage />} />
+          <Route path="reports"      element={<ReportsPage />} />
+          <Route path="audit-logs"   element={<AuditLogPage />} />
+          <Route path="branches"     element={<BranchesPage />} />
+          <Route path="inventory"    element={<InventoryPage />} />
+          <Route path="settings"     element={<SettingsPage />} />
         </Route>
 
         {/* Legacy dashboard redirect */}
