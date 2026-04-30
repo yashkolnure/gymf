@@ -229,7 +229,7 @@ export default function SupportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { icon: BookOpen, label: 'Read the Docs', desc: 'Step-by-step feature guides', href: '/docs', color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
-              { icon: MessageCircle, label: 'WhatsApp Support', desc: '+91 98765 43210', href: 'https://wa.me/918767640530', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+              { icon: MessageCircle, label: 'WhatsApp Support', desc: '+91 8767640530', href: 'https://wa.me/918767640530', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
               { icon: Mail, label: 'Email Support', desc: 'admin@avenirya.com', href: '/contact', color: 'text-primary bg-primary/10 border-primary/20' },
             ].map(({ icon: Icon, label, desc, href, color }) => (
               <Reveal key={label}>
